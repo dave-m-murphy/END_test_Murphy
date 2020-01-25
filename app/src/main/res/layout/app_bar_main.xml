@@ -47,6 +47,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
+                        android:textColor="@color/black"
                         android:background="@color/white"/>
 
                 </FrameLayout>
@@ -71,18 +72,10 @@
                         android:layout_marginStart="16dp"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
+                        android:textColor="@color/black"
                         android:background="@color/white"/>
 
                 </FrameLayout>
-
-<!--                <TextView-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="50dp"-->
-<!--                    android:layout_gravity="center_horizontal"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="View"-->
-<!--                    android:textColor="@color/black" />-->
 
                 <TextView
                     android:layout_width="0dp"
@@ -99,6 +92,7 @@
                 android:id="@+id/top_toolBar2"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:elevation="6dp"
                 app:contentInsetLeft="0dp"
                 app:contentInsetStart="0dp"
                 app:layout_collapseMode="pin">
