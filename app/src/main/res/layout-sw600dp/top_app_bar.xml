@@ -18,8 +18,7 @@
                 android:id="@+id/start_button_top_app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:onClick="onButtonClick" />
+                android:background="@android:color/transparent" />
 
             <ImageView
                 android:id="@+id/start_image_top_app_bar"
@@ -55,8 +54,7 @@
                 android:id="@+id/end_button_top_app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:onClick="onButtonClick" />
+                android:background="@android:color/transparent" />
 
             <ImageView
                 android:id="@+id/end_image_top_app_bar"

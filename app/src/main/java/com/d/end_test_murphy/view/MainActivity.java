@@ -2,9 +2,15 @@ package com.d.end_test_murphy.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,40 +18,35 @@ import com.d.end_test_murphy.model.ENDApi;
 import com.d.end_test_murphy.model.Product;
 import com.d.end_test_murphy.model.ProductList;
 import com.d.end_test_murphy.R;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String END_API = "https://www.endclothing.com/media/catalog/";
-
     public static String TAG = "MainActivity";
+    private DrawerLayout drawerLayout;
 
     private ENDApi endApi;
     private ProductAdapter adapter;
     private RecyclerView recyclerView;
     private List<Product> products;
-    private GridLayoutManager gridLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // How much of this do I need?
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // HEADER view type needs span size of 2
-        gridLayoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -79,6 +80,26 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         getENDProducts();
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        TextView filterTextView = findViewById(R.id.product_filter);
+        filterTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.END);
+            }
+        });
+
+        adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Product product) {
+                Toast.makeText(getApplicationContext(), product.getName() + " selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void onNavHeaderCloseClick(View view) {
+        drawerLayout.closeDrawer(GravityCompat.END);
     }
 
     private void getENDProducts() {
@@ -104,7 +125,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onButtonClick(View view) {
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         //TODO
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+            drawerLayout.closeDrawer(GravityCompat.END);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

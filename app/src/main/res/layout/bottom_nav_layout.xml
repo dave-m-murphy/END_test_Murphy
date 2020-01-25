@@ -41,7 +41,6 @@
             android:textColor="@color/grey5"
             android:gravity="center"
             android:textSize="20sp"
-            android:textStyle="normal"
             android:text="END."
             style="?android:attr/borderlessButtonStyle"/>
 

@@ -21,7 +21,7 @@ import java.util.Random;
 public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Product> products = new ArrayList<>();
-    private BlahBlahBlah listener;
+    private OnItemClickListener listener;
     private Context context;
 
     private static final int HEADER = 0;
@@ -99,7 +99,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private TextView textViewColor;
         private TextView textViewPrice;
 
-        public ProductHolder(@NonNull View itemView) {
+        ProductHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.product_image_view);
             textViewName = itemView.findViewById(R.id.text_view_name);
@@ -108,7 +108,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             // this is a generic click listener set on the ViewHolder. What's
             // of interest os onClick() method which calls the onItemClick()
-            // method of BlahBlahBlah, with list position
+            // method of OnItemClickListener, with list position
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -124,19 +124,19 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     class ItemCountHolder extends RecyclerView.ViewHolder {
         private TextView textViewItemCount;
 
-        public ItemCountHolder(@NonNull View itemView) {
+        ItemCountHolder(@NonNull View itemView) {
             super(itemView);
             textViewItemCount = itemView.findViewById(R.id.product_item_count);
         }
     }
 
-    public interface BlahBlahBlah {
+    public interface OnItemClickListener {
         void onItemClick(Product product);
     }
 
-    // this accepts a BlahBlahBlah, declared earlier as an Interface. And sets it
+    // this accepts a OnItemClickListener, declared earlier as an Interface. And sets it
     // to a property named 'listener'
-    public void setOnItemClickListener(BlahBlahBlah listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 }
