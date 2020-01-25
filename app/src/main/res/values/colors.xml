@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8c8c8c</color>
+    <color name="colorPrimaryDark">#666666</color>
+    <color name="colorAccent">#4bae32</color>
+    <color name="silver">#c0c0c0</color>
+
+    <!-- Basic Colors -->
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#ed1c24</color>
+    <color name="grey_dark">#787878</color>
+    <color name="backarrowcolour">#ffffff</color>
+
+    <!-- UI kit -->
+    <color name="green">#4bae32</color>
+    <color name="dark_green">#3c8a28</color>
+    <color name="grey1">#d9d9d9</color>
+    <color name="grey2">#b2b2b2</color>
+    <color name="grey3">#a6a6a6</color>
+    <color name="grey4">#8c8c8c</color>
+    <color name="grey5">#666666</color>
+    <color name="light_grey">#fff3f3f3</color>
+</resources>

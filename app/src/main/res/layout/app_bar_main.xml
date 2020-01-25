@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?actionBarSize"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Spinner
+                        android:id="@+id/product_spinner_sort"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:entries="@array/sort_spinner_options" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="Sort"
+                        android:layout_marginEnd="40dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:background="@color/white"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Spinner
+                        android:id="@+id/product_spinner_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:entries="@array/view_spinner_options" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="View"
+                        android:layout_marginEnd="40dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:background="@color/white"/>
+
+                </FrameLayout>
+
+<!--                <TextView-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="View"-->
+<!--                    android:textColor="@color/black" />-->
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Filter"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/top_toolBar2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin">
+
+                <include
+                    layout="@layout/top_app_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <include layout="@layout/bottom_nav_layout" />
+
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
