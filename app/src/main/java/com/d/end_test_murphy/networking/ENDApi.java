@@ -1,4 +1,6 @@
-package com.d.end_test_murphy.model;
+package com.d.end_test_murphy.networking;
+
+import com.d.end_test_murphy.model.ProductList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

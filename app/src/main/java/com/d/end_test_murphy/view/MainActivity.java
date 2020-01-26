@@ -14,7 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.d.end_test_murphy.model.ENDApi;
+import com.d.end_test_murphy.networking.RetrofitService;
+import com.d.end_test_murphy.networking.ENDApi;
 import com.d.end_test_murphy.model.Product;
 import com.d.end_test_murphy.model.ProductList;
 import com.d.end_test_murphy.R;
@@ -22,17 +23,13 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String END_API = "https://www.endclothing.com/media/catalog/";
     public static String TAG = "MainActivity";
     private DrawerLayout drawerLayout;
 
@@ -46,16 +43,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(END_API)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build();
-
-        endApi = retrofit.create(ENDApi.class);
+        endApi = RetrofitService.createService(ENDApi.class);
 
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);

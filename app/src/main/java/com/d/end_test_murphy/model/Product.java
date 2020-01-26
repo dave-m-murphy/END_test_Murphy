@@ -3,6 +3,7 @@ package com.d.end_test_murphy.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+// model class for the API response
 public class Product {
     @SerializedName("id")
     @Expose
