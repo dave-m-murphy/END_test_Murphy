@@ -27,7 +27,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int HEADER = 0;
     private static final int ITEM = 1;
 
-    public ProductAdapter(Context context) {
+    ProductAdapter(Context context) {
         this.context = context;
     }
 
@@ -46,7 +46,6 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 return new ProductHolder(v);
         }
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
@@ -106,9 +105,6 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             textViewColor = itemView.findViewById(R.id.text_view_color);
             textViewPrice = itemView.findViewById(R.id.text_view_price);
 
-            // this is a generic click listener set on the ViewHolder. What's
-            // of interest os onClick() method which calls the onItemClick()
-            // method of OnItemClickListener, with list position
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -134,9 +130,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         void onItemClick(Product product);
     }
 
-    // this accepts a OnItemClickListener, declared earlier as an Interface. And sets it
-    // to a property named 'listener'
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 }

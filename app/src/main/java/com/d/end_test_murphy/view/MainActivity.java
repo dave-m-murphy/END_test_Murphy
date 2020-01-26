@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getENDProducts() {
-
         ProductViewModel productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
         productViewModel.init();
         productViewModel.getProductListRepository().observe(this, new Observer<ProductList>() {

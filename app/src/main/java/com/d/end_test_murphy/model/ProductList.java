@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+// model class for the API response
 public class ProductList {
     @SerializedName("products")
     @Expose
