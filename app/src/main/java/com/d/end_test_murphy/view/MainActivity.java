@@ -1,7 +1,6 @@
 package com.d.end_test_murphy.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -11,41 +10,30 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.d.end_test_murphy.networking.RetrofitService;
-import com.d.end_test_murphy.networking.ENDApi;
+import com.d.end_test_murphy.viewmodels.ProductViewModel;
 import com.d.end_test_murphy.model.Product;
 import com.d.end_test_murphy.model.ProductList;
 import com.d.end_test_murphy.R;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static String TAG = "MainActivity";
     private DrawerLayout drawerLayout;
-
-    private ENDApi endApi;
     private ProductAdapter adapter;
-    private RecyclerView recyclerView;
-    private List<Product> products;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        endApi = RetrofitService.createService(ENDApi.class);
-
-        recyclerView = findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
 
         adapter = new ProductAdapter(this);
@@ -91,24 +79,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getENDProducts() {
-        Call<ProductList> call = endApi.getProducts();
 
-        call.enqueue(new Callback<ProductList>() {
+        ProductViewModel productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
+        productViewModel.init();
+        productViewModel.getProductListRepository().observe(this, new Observer<ProductList>() {
             @Override
-            public void onResponse(Call<ProductList> call, Response<ProductList> response) {
-                // check if HTTP code is between 200-300
-                if (!response.isSuccessful()) {
-                    Log.d(TAG,"Code: " + response.code());
-                    return;
-                }
-                products = response.body().getProducts();
-                recyclerView.setAdapter(adapter);
-                adapter.setProducts(products);
-            }
-
-            @Override
-            public void onFailure(Call<ProductList> call, Throwable t) {
-                Log.d(TAG,"Message: " + t.getMessage());
+            public void onChanged(ProductList productList) {
+                adapter.setProducts(productList.getProducts());
             }
         });
     }
